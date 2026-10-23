@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+body { margin: 0; background: #e9e6df; color: #111; font-family: Georgia, 'Times New Roman', serif; }
+
+/* Lembar desktop: semua ukuran memakai --u (1 px pada gambar referensi) sehingga skalanya identik di semua lebar layar. */
+.sheet { container-type: inline-size; position: relative; width: 100%; aspect-ratio: 1616 / 1068; background: #fff; }
+.sheet-in { position: absolute; inset: 0; --u: calc(100cqw / 1616); --b: calc(var(--u) * 1.6); font-family: 'Times New Roman', Times, serif; }
+.sheet-wrap:fullscreen { display: grid; place-items: center; background: #e9e6df; }
+.sheet-wrap:fullscreen .sheet { width: min(100vw, calc(100vh * 1616 / 1068)); }
+.frame { border: var(--b) solid #000; background: #fff; box-sizing: border-box; }
+.sheet-in .leaflet-bottom.leaflet-left { margin-left: calc(var(--u) * 143); }
+.sheet-in .leaflet-container { font-family: inherit; }
+/* Atribusi peta tetap terbaca: ditaruh di pojok kanan bawah yang kosong (tidak tertutup kartu) dan boleh turun baris. */
+.sheet-in .leaflet-control-attribution { font-size: calc(var(--u) * 8); line-height: 1.25; max-width: calc(var(--u) * 150); text-align: right; }
+.sheet-in .leaflet-control-scale-line { font-size: calc(var(--u) * 9); }
+
+.graticule { background-image: linear-gradient(to right, rgba(255,255,255,.16) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.16) 1px, transparent 1px);
+  background-size: 84px 84px; }
+.sheet-in .graticule { background-size: calc(var(--u) * 105.3) calc(var(--u) * 105.5); background-position: calc(var(--u) * 102) calc(var(--u) * 27); }
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+.pop { animation: pop .2s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop { animation: none; } }
